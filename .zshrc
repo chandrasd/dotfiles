@@ -2,7 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # Setup oh-my-posh
-eval "$(oh-my-posh init zsh --config 'poshmon')"
+eval "$(oh-my-posh init zsh --config 'hul10')"
 
 plugins=(git)
 
