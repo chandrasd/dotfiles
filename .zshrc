@@ -8,14 +8,19 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+# zoxide setup
+eval "$(zoxide init zsh)"
+
+# Aliases - movement
 alias cd="z"
-alias gaa="git add -A"
 alias goto='cd "$(find . -type d -not -path "*/\.*" | fzf)"'
+
+# Aliases - git
+alias gaa="git add -A"
 
 source /Users/chandradasari/.docker/init-zsh.sh || true # Added by Docker Desktop
 source $(brew --prefix nvm)/nvm.sh
@@ -25,6 +30,17 @@ function lazygit() {
   git commit -m "$1"
   git push
 }
+
+# fzf into git branches
+function git-fzf() {
+    local branch
+    branch=$(git for-each-ref --format='%(refname:short) %(committerdate:short) %(authorname) %(contents:subject)' refs/heads/ |
+        column -t -s ' ' |
+        fzf --preview "git log --oneline --graph --date=short --color=always --pretty='format:%C(auto)%cd %h%d %s' {1} | head -20" |
+        awk '{print $1}') &&
+    git checkout "$branch"
+}
+
 
 export MODULAR_HOME="$HOME/.modular"
 export PATH="$MODULAR_HOME/pkg/packages.modular.com_mojo/bin:$PATH"
@@ -51,8 +67,3 @@ DISABLE_AUTO_TITLE="true"
 # zsh syntax highlighting
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-
-# zoxide setup
-eval "$(zoxide init zsh)"
