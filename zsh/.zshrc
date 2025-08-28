@@ -1,13 +1,12 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Setup oh-my-posh
-eval "$(oh-my-posh init zsh --config 'hul10')"
-
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Setup oh-my-posh
+eval "$(oh-my-posh init zsh --config 'quick-term')"
 
 # set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
@@ -96,4 +95,6 @@ DISABLE_AUTO_TITLE="true"
 
 # zsh syntax highlighting
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
 
