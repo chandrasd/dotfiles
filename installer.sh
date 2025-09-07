@@ -2,6 +2,7 @@
 
 set -e
 
+# Homebrew Setup
 if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
@@ -12,10 +13,12 @@ fi
 
 brew bundle
 
-if [ -f "$HOME/.bashrc" ]; then
-    # Need to replace the file
-fi
+# ZSH Setup
 
-if [ -f "$HOME/.zshrc" ]; then
-    # Need to replace the file and the else part
-fi
+SOURCE_ZSHRC="$(pwd)/.zshrc"
+TARGET_ZSHRC="$HOME/.zshrc"
+
+cp "$SOURCE_ZSHRC" "$TARGET_ZSHRC"
+echo "Successfully copied .zshrc to $HOME"
+
+# Need to copy config/ into ~/.config 

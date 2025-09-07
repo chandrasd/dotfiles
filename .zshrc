@@ -1,0 +1,60 @@
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+function load_script {
+	local path=$1
+	if test -f $path; then
+		source $path
+	else
+		echo "no $path found"
+	fi
+}
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+# zoxide setup
+eval "$(zoxide init zsh)"
+
+source /Users/chandradasari/.docker/init-zsh.sh || true # Added by Docker Desktop
+source $(brew --prefix nvm)/nvm.sh
+
+export MODULAR_HOME="$HOME/.modular"
+export PATH="$MODULAR_HOME/pkg/packages.modular.com_mojo/bin:$PATH"
+
+[[ "$TERM_PROGRAM" == "CodeEditApp_Terminal" ]] && . "/Applications/CodeEdit.app/Contents/Resources/codeedit_shell_integration.zsh"
+
+# bun completions
+[ -s "/Users/chandradasari/.bun/_bun" ] && source "/Users/chandradasari/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+. "/Users/chandradasari/.deno/env"
+
+
+# opencode
+export PATH=/Users/chandradasari/.opencode/bin:$PATH
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+load_script ~/.config/zsh/functions.zsh
+load_script ~/.config/zsh/bindings.zsh
+load_script ~/.config/zsh/aliases.zsh
+
+DISABLE_AUTO_TITLE="true"
+
+# zsh syntax highlighting
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# Setup oh-my-posh
+eval "$(oh-my-posh init zsh --config ~/.customtheme.omp.json)"
+
+
+
