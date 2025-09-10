@@ -14,6 +14,7 @@ Update this repo with latest configs from local machine
 Ghostty + ohmyzsh + ohmyposh
 
 <img src="./images/terminal.png"/>
+<img src="./images/crt.gif"/>
 
 ## Editor
 Zed + Gruvbox
