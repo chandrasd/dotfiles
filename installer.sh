@@ -14,7 +14,6 @@ fi
 brew bundle
 
 # ZSH Setup
-
 SOURCE_ZSHRC="$(pwd)/.zshrc"
 TARGET_ZSHRC="$HOME/.zshrc"
 
