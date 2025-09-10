@@ -9,3 +9,8 @@ Update this repo with latest configs from local machine
 ```bash
 ./updater.sh
 ```
+
+## Terminal
+Ghostty + ohmyzsh + ohmyposh
+
+<img src="./images/terminal.png" width="200" />
